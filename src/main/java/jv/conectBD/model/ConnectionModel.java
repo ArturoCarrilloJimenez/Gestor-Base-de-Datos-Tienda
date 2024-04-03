@@ -1,8 +1,6 @@
-package jv.conectarconbasesdedatos.model;
+package jv.conectBD.model;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
@@ -12,14 +10,14 @@ import java.sql.SQLException;
  * @since 2024
  * @author Arturo Carrillo Jimenez
  */
-public class IndexModel {
-    private Connection conn = null;
+public class ConnectionModel {
+    protected static java.sql.Connection conn = null;
 
     /**
      * Metodo que se encarga de la conexion a la base de datos
      *
      */
-    public int connectToDatabase() {
+    public static int connectToDatabase() {
         int message = 0;
 
         // Librería de MySQL
@@ -33,21 +31,6 @@ public class IndexModel {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, "root", "");
         } catch (ClassNotFoundException | SQLException e) {
-            message = 1;
-        }
-
-        return message;
-    }
-
-    public int resetTableCompras() {
-        int message = 0;
-
-        PreparedStatement stmt = null;
-
-        try {
-            stmt = conn.prepareStatement("TRUNCATE FROM compras");
-            stmt.executeUpdate();
-        } catch (SQLException e) {
             message = 1;
         }
 

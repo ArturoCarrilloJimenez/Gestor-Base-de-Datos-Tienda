@@ -4,8 +4,8 @@ module org.example.conectarconbasesdedatos {
     requires java.sql;
 
 
-    opens jv.conectarconbasesdedatos to javafx.fxml;
-    exports jv.conectarconbasesdedatos;
-    exports jv.conectarconbasesdedatos.controller;
-    opens jv.conectarconbasesdedatos.controller to javafx.fxml;
+    opens jv.conectBD to javafx.fxml;
+    exports jv.conectBD;
+    exports jv.conectBD.controller;
+    opens jv.conectBD.controller to javafx.fxml;
 }

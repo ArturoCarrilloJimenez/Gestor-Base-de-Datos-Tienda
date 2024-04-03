@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                org.example.conectarconbasesdedatos/jv.conectarconbasesdedatos.IndexApplication
+                                org.example.conectarconbasesdedatos/jv.conectBD.IndexApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
