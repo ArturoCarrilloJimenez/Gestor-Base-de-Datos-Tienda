@@ -7,7 +7,7 @@ CREATE TABLE cliente (
     nombre VARCHAR(50) NOT NULL,
     apellido1 VARCHAR(50) NOT NULL,
     apellido2 VARCHAR(50) NOT NULL,
-    telefono VARCHAR(12) NOT NULL
+    telefono CHAR(9) NOT NULL
 );
 
 CREATE TABLE producto (
@@ -28,11 +28,11 @@ CREATE TABLE compras (
     FOREIGN KEY (id_producto) REFERENCES producto (id)
 );
 
-INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('Juan', 'Pérez', 'Gómez', '1234567890');
-INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('María', 'López', 'Fernández', '0987654321');
-INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('Carlos', 'Jiménez', 'Ruiz', '1122334455');
-INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('Ana', 'Martínez', 'Morales', '5566778899');
-INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('Luis', 'García', 'Hernández', '2233445566');
+INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('Juan', 'Pérez', 'Gómez', '123456789');
+INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('María', 'López', 'Fernández', '987654321');
+INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('Carlos', 'Jiménez', 'Ruiz', '112233445');
+INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('Ana', 'Martínez', 'Morales', '556677889');
+INSERT INTO cliente (nombre, apellido1, apellido2, telefono) VALUES ('Luis', 'García', 'Hernández', '223344556');
 
 INSERT INTO producto (nombre, descripcion, pvp) VALUES ('Televisor', 'Televisor 4K de 55 pulgadas', 899.99);
 INSERT INTO producto (nombre, descripcion, pvp) VALUES ('Lavadora', 'Lavadora de carga frontal 10kg', 599.99);
@@ -52,7 +52,13 @@ FROM cliente;
 SELECT *
 FROM producto;
 
+SELECT cliente.id, CONCAT_WS(" ",cliente.nombre, cliente.apellido1, cliente.apellido2) AS "nombreApellodosCliente", producto.id, producto.nombre, compras.cantidad, compras.fecha_hora
+FROM producto INNER JOIN compras
+	ON producto.id = compras.id_producto
+    INNER JOIN cliente
+    ON cliente.id = compras.id_cliente;
+
 SELECT *
-FROM compras;
+FROM compraS;
 
 TRUNCATE TABLE compras;

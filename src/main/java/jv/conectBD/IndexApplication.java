@@ -27,9 +27,13 @@ public class IndexApplication extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("index-view"), 800, 450);
+        scene = new Scene(loadFXML("index-view"), 800, 550);
         stage.setTitle("Gestor de la Base de Datos Tienda");
         stage.setScene(scene);
+        stage.maxWidthProperty().setValue(800);
+        stage.maxHeightProperty().setValue(588);
+        stage.minWidthProperty().setValue(800);
+        stage.minHeightProperty().setValue(588);
         stage.show();
     }
 
