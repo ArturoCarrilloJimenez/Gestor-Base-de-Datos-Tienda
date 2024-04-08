@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * Clase que se encarga de la conexion y gestion de la base de datos
  *
- * @version 0.01
+ * @version 1.0
  * @since 2024
  * @author Arturo Carrillo Jimenez
  */
@@ -17,7 +17,7 @@ public class ConnectionModel {
      * Metodo que se encarga de la conexion a la base de datos
      *
      */
-    public static int connectToDatabase() {
+    public static int connectToDatabase(String user, String password) {
         int message = 0;
 
         // Librería de MySQL
@@ -29,7 +29,7 @@ public class ConnectionModel {
         // Conectar a la base de datos
         try {
             Class.forName(driver);
-            conn = DriverManager.getConnection(url, "root", "");
+            conn = DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException | SQLException e) {
             message = 1;
         }

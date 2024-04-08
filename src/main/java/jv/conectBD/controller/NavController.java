@@ -1,16 +1,17 @@
 package jv.conectBD.controller;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-
+import jv.conectBD.IndexApplication;
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Clase que se encarga de la logica de la vista del menu de navegacion
  *
  *
- * @version 0.1
+ * @version 1.0
  * @since 2024
  * @author Arturo Carrillo Jimenez
  */
@@ -20,9 +21,9 @@ public class NavController {
     /**
      * Metodo que se encarga de resetear la tabla compras
      *
-     * @param event ActionEvent
      */
-    public void resetTableCompra(ActionEvent event) {
+    @FXML
+    public void resetTableCompra() {
         AtomicInteger messege = new AtomicInteger();
 
         // Mostrar mensaje de confirmacion
@@ -51,5 +52,35 @@ public class NavController {
             // Mostrar mensaje de error
             jv.conectBD.controller.IndexController.alertConnectionError();
         }
+    }
+
+    /**
+     * Metodo que cambia la vista a la vista de clientes
+     *
+     * @throws IOException Excepcion
+     */
+    @FXML
+    public void viewClient() throws IOException {
+        IndexApplication.setRoot("cliente-view");
+    }
+
+    /**
+     * Metodo que cambia la vista a la vista de productos
+     *
+     * @throws IOException Excepcion
+     */
+    @FXML
+    public void viewProduct() throws IOException {
+        IndexApplication.setRoot("producto-view");
+    }
+
+    /**
+     * Metodo que cambia la vista a la vista de compras
+     *
+     * @throws IOException Excepcion
+     */
+    @FXML
+    public void viewCompra() throws IOException {
+        IndexApplication.setRoot("compra-view");
     }
 }
