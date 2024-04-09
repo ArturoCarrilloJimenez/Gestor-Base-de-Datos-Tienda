@@ -104,7 +104,7 @@
                   <TableColumn fx:id="columnApellido2" editable="false" maxWidth="131.19996643066406" minWidth="131.19996643066406" prefWidth="131.19996643066406" text="Apellido 2" />
                   <TableColumn fx:id="columnTelefono" maxWidth="92.0" minWidth="92.0" prefWidth="92.0" text="Telefono" />
                   <TableColumn fx:id="columnEdit" maxWidth="39.200042724609375" minWidth="39.200042724609375" prefWidth="39.200042724609375" />
-                  <TableColumn fx:id="columnDelate" maxWidth="36.7999267578125" minWidth="36.7999267578125" prefWidth="36.7999267578125" />
+                  <TableColumn fx:id="columnDelete" maxWidth="36.7999267578125" minWidth="36.7999267578125" prefWidth="36.7999267578125" />
                </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
