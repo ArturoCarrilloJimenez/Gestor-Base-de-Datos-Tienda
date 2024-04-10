@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import jv.conectBD.controller.CompraController;
 
 /**
  * Clase Compra
@@ -53,12 +54,12 @@ public class Compra {
 
         // Establecer eventos de los botones
         btnEdit.setOnAction(e -> {
-
+            CompraController.editCompra(this);
         });
 
         // Evento de eliminar
         btnDelete.setOnAction(e -> {
-
+            CompraController.deleteCompra(this);
         });
     }
 

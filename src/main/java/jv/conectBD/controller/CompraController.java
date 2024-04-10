@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import jv.conectBD.ClassObject.Compra;
 import jv.conectBD.model.ClientesModel;
 import jv.conectBD.model.ComprasModel;
@@ -152,5 +153,119 @@ public class CompraController implements Initializable {
         // Use the btnEditProperty and btnDeleteProperty methods
         columnEdit.setCellValueFactory(cellData -> cellData.getValue().btnEditProperty());
         columnDelete.setCellValueFactory(cellData -> cellData.getValue().btnDeleteProperty());
+    }
+
+    /**
+     * Método que edita una compra
+     *
+     * @param compra compra a editar
+     */
+    public static void editCompra(Compra compra) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Editar compra");
+        alert.setHeaderText("Editar compra");
+        alert.setContentText("¿Estas seguro de que quieres editar la compra?");
+
+        ButtonType buttonTypeYes = new ButtonType("Si");
+        ButtonType buttonTypeNo = new ButtonType("No");
+
+        Label label = new Label("Clientes");
+        Label label1 = new Label("Productos");
+        Label label2 = new Label("Cantidad");
+
+
+        ChoiceBox<String> clientes = new ChoiceBox<>();
+        ChoiceBox<String> productos = new ChoiceBox<>();
+        TextField cantidad = new TextField();
+
+        clientes.setItems(FXCollections.observableArrayList(ClientesModel.getClientes()));
+        productos.setItems(FXCollections.observableArrayList(ProductosModel.getProductos()));
+        cantidad.setText(String.valueOf(compra.getCantidad()));
+
+        GridPane grid = new GridPane();
+        grid.add(label, 1, 1);
+        grid.add(clientes, 2, 1);
+        grid.add(label1, 1, 2);
+        grid.add(productos, 2, 2);
+        grid.add(label2, 1, 3);
+        grid.add(cantidad, 2, 3);
+
+        alert.getDialogPane().setContent(grid);
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        alert.showAndWait().ifPresent(type -> {
+            if (type == buttonTypeYes) {
+                if (clientes.getValue() == null || productos.getValue() == null || cantidad.getText().isEmpty()) {
+                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                    alert1.setTitle("Error al editar la compra");
+                    alert1.setHeaderText("Todos los campos son obligatorios");
+                    alert1.showAndWait();
+                } else {
+                    String[] cliente = clientes.getValue().split("-");
+                    String[] producto = productos.getValue().split("-");
+
+                    try {
+                        int cantidadCompra = Integer.parseInt(cantidad.getText());
+                        int message = ComprasModel.editCompra(Integer.parseInt(cliente[0]), Integer.parseInt(producto[0]), cantidadCompra,compra.getIdCliente(), compra.getIdProducto());
+
+                        if (message == 0) {
+                            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                            alert1.setTitle("Compra editada");
+                            alert1.setHeaderText("La compra ha sido editada correctamente");
+                            alert1.setContentText("Recarga la pagina para ver los cambios");
+                            alert1.showAndWait();
+                        } else {
+                            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                            alert1.setTitle("Error al editar la compra");
+                            alert1.setHeaderText("Error al editar la compra");
+                            alert1.showAndWait();
+                        }
+                    } catch (NumberFormatException e) {
+                        Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                        alert1.setTitle("Error al editar la compra");
+                        alert1.setHeaderText("La cantidad debe ser un número entero");
+                        alert1.showAndWait();
+
+                    }
+                }
+            }
+        });
+    }
+
+    /**
+     * Método que elimina una compra
+     *
+     * @param compra compra a eliminar
+     */
+    public static void deleteCompra(Compra compra) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar compra");
+        alert.setHeaderText("¿Estas seguro de que quieres eliminar el la compra?");
+        alert.setContentText("Esta accion no se puede deshacer");
+
+        ButtonType buttonTypeYes = new ButtonType("Si");
+        ButtonType buttonTypeNo = new ButtonType("No");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        alert.showAndWait().ifPresent(type -> {
+            if (type == buttonTypeYes) {
+                    int message = ComprasModel.deleteCompra(compra.getIdCliente(),compra.getIdProducto());
+
+                if (message == 0) {
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                    alert1.setTitle("Compra eliminado");
+                    alert1.setHeaderText("La compra ha sido eliminado correctamente");
+                    alert1.setContentText("Recarga la pagina para ver los cambios");
+                    alert1.showAndWait();
+                } else {
+                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                    alert1.setTitle("Error al eliminar el compra");
+                    alert1.setHeaderText("Error al eliminar la compra");
+                    alert1.showAndWait();
+                }
+            }
+        });
     }
 }

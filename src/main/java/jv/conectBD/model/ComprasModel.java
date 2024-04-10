@@ -144,4 +144,45 @@ public class ComprasModel extends ConnectionModel {
 
         return compras;
     }
+
+    public static int editCompra(int id_cliente_actual, int id_producto_actual, int cantidad, int id_cliente_anterior, int id_producto_anterior) {
+        int message = 0;
+
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement("UPDATE compras SET cantidad = ?,id_cliente = ?,id_producto = ? WHERE id_cliente = ? AND id_producto = ?;");
+            stmt.setInt(1, cantidad);
+            stmt.setInt(2, id_cliente_actual);
+            stmt.setInt(3, id_producto_actual);
+            stmt.setInt(4, id_cliente_anterior);
+            stmt.setInt(5, id_producto_anterior);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            message = 1;
+        }
+
+        return message;
+    }
+
+    /**
+     * Metodo que se encarga de eliminar una compra de la base de datos
+     *
+     */
+    public static int deleteCompra(int id_cliente, int id_producto) {
+        int message = 0;
+
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement("DELETE FROM compras WHERE id_cliente = ? AND id_producto = ?;");
+            stmt.setInt(1, id_cliente);
+            stmt.setInt(2, id_producto);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            message = 1;
+        }
+
+        return message;
+    }
 }
