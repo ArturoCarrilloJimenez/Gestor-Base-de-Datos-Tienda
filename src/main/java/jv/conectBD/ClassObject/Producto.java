@@ -58,7 +58,6 @@ public class Producto {
         btnDelete.setOnAction(e -> {
             ProductoController.deleteProducto(this);
         });
-
     }
 
     /**
