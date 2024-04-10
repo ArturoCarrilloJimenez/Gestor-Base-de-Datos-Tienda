@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import jv.conectBD.controller.ProductoController;
 
 /**
  * Clase Producto
@@ -50,12 +51,12 @@ public class Producto {
 
         // Establecemos los eventos de los botones
         btnEdit.setOnAction(e -> {
-
+            ProductoController.editProducto(this);
         });
 
         // Establecemos los eventos de los botones
         btnDelete.setOnAction(e -> {
-
+            ProductoController.deleteProducto(this);
         });
     }
 

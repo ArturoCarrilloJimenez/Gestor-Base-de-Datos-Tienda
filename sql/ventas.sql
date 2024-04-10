@@ -59,6 +59,6 @@ FROM producto INNER JOIN compras
     ON cliente.id = compras.id_cliente;
 
 SELECT *
-FROM compraS;
+FROM compras;
 
 TRUNCATE TABLE compras;

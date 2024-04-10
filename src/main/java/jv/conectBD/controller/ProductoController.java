@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import jv.conectBD.ClassObject.Compra;
 import jv.conectBD.ClassObject.Producto;
 import jv.conectBD.model.ProductosModel;
@@ -168,5 +169,119 @@ public class ProductoController implements Initializable {
         // Use the btnEditProperty and btnDeleteProperty methods
         columnEdit.setCellValueFactory(cellData -> cellData.getValue().btnEditProperty());
         columnDelete.setCellValueFactory(cellData -> cellData.getValue().btnDeleteProperty());
+    }
+
+    /**
+     * Metodo que se encarga de editar un producto de la base de datos
+     *
+     * @param producto producto a eliminar
+     */
+    public static void editProducto(Producto producto) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Editar producto");
+        alert.setHeaderText("Editar producto");
+        alert.setContentText("¿Estas seguro de que quieres editar el producto?");
+
+        Label labelNombre = new Label("Nombre:");
+        Label labelDescripcion = new Label("Descripcion:");
+        Label labelPvp = new Label("Pvp:");
+
+        TextField nombre = new TextField(producto.getNombre());
+        TextField descripcion = new TextField(producto.getDescripcion());
+        TextField pvp = new TextField(String.valueOf(producto.getPvp()));
+
+        GridPane grid = new GridPane();
+        grid.add(labelNombre, 1, 1);
+        grid.add(nombre, 2, 1);
+        grid.add(labelDescripcion, 1, 2);
+        grid.add(descripcion, 2, 2);
+        grid.add(labelPvp, 1, 3);
+        grid.add(pvp, 2, 3);
+
+        alert.getDialogPane().setContent(grid);
+
+        ButtonType buttonTypeOk = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeOk, buttonTypeCancel);
+
+        alert.showAndWait().ifPresent(type -> {
+            if (type == buttonTypeOk) {
+                if (nombre.getText().isEmpty() || descripcion.getText().isEmpty() || pvp.getText().isEmpty()) {
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText("Error al editar el producto");
+                    alertError.setContentText("Faltan datos");
+                    alertError.showAndWait();
+                } else {
+                    try {
+                        Double pvpDouble = Double.parseDouble(pvp.getText());
+                        if (pvpDouble < 0) {
+                            Alert alertError = new Alert(Alert.AlertType.ERROR);
+                            alertError.setTitle("Error");
+                            alertError.setHeaderText("Error");
+                            alertError.setContentText("Precio unitario incorrecto");
+                            alertError.showAndWait();
+                        } else {
+                            ProductoController productoController = new ProductoController();
+                            pvpDouble = productoController.truncate(pvpDouble, 2);
+                            int message = ProductosModel.editProducto(producto.getId(), nombre.getText(), descripcion.getText(), pvpDouble);
+
+                            if (message == 1) {
+                                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                                alertError.setTitle("Error");
+                                alertError.setHeaderText("Error al editar el producto");
+                                alertError.setContentText("Algo ha fallado al intentar editar el producto");
+                                alertError.showAndWait();
+                            } else {
+                                Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                                alertInfo.setTitle("Informacion");
+                                alertInfo.setHeaderText("Producto editado");
+                                alertInfo.setContentText("El producto " + nombre.getText() + " se ha editado correctamente");
+                                alertInfo.showAndWait();
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                        Alert alertError = new Alert(Alert.AlertType.ERROR);
+                        alertError.setTitle("Error");
+                        alertError.setHeaderText("Error");
+                        alertError.setContentText("Precio unitario incorrecto, separa los decimales con un punto");
+                        alertError.showAndWait();
+                    }
+                }
+            }
+        });
+    }
+
+    public static void deleteProducto(Producto producto) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar producto");
+        alert.setHeaderText("Eliminar producto");
+        alert.setContentText("¿Estas seguro de que quieres eliminar el producto?");
+
+        ButtonType buttonTypeOk = new ButtonType("Aceptar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonTypeCancel = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeOk, buttonTypeCancel);
+
+        alert.showAndWait().ifPresent(type -> {
+            if (type == buttonTypeOk) {
+                int message = ProductosModel.deleteProducto(producto.getId());
+
+                if (message == 1) {
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText("Error al eliminar el producto");
+                    alertError.setContentText("Algo ha fallado al intentar eliminar el producto");
+                    alertError.showAndWait();
+                } else {
+                    Alert alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                    alertInfo.setTitle("Informacion");
+                    alertInfo.setHeaderText("Producto eliminado");
+                    alertInfo.setContentText("El producto " + producto.getNombre() + " se ha eliminado correctamente");
+                    alertInfo.showAndWait();
+                }
+            }
+        });
     }
 }

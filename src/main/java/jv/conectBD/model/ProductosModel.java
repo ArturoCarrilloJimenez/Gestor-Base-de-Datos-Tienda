@@ -109,4 +109,39 @@ public class ProductosModel extends ConnectionModel {
         }
         return productosArray;
     }
+
+    public static int editProducto(int id, String nombre, String descripcion, double pvp) {
+        int message = 0;
+
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement("UPDATE producto SET nombre = ?, descripcion = ?, pvp = ? WHERE id = ?");
+            stmt.setString(1, nombre);
+            stmt.setString(2, descripcion);
+            stmt.setDouble(3, pvp);
+            stmt.setInt(4, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            message = 1;
+        }
+
+        return message;
+    }
+
+    public static int deleteProducto(int id) {
+        int message = 0;
+
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = conn.prepareStatement("DELETE FROM producto WHERE id = ?");
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            message = 1;
+        }
+
+        return message;
+    }
 }
