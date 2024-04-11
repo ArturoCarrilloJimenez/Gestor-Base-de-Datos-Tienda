@@ -80,10 +80,10 @@
               <columns>
                   <TableColumn fx:id="columnId" minWidth="0.0" prefWidth="0.0" text="id" />
                 <TableColumn fx:id="columnNombre" editable="false" maxWidth="148.79997873306274" minWidth="148.79997873306274" prefWidth="148.79997873306274" text="Nombre" />
-                <TableColumn fx:id="columnDescripcion" editable="false" maxWidth="180.79998779296875" minWidth="180.79998779296875" prefWidth="180.79998779296875" text="Descripcion" />
-                  <TableColumn fx:id="columnPvp" editable="false" maxWidth="102.39990234375" minWidth="102.39990234375" prefWidth="102.39990234375" text="Precio unitario" />
-                  <TableColumn fx:id="columnEdit" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Edit" />
-                  <TableColumn fx:id="columnDelete" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Delete" />
+                <TableColumn fx:id="columnDescripcion" editable="false" maxWidth="215.99996948242188" minWidth="180.79998779296875" prefWidth="215.99996948242188" text="Descripcion" />
+                  <TableColumn fx:id="columnPvp" editable="false" maxWidth="102.39990234375" minWidth="67.199951171875" prefWidth="99.9998779296875" text="Precio unitario" />
+                  <TableColumn fx:id="columnEdit" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="Edit" />
+                  <TableColumn fx:id="columnDelete" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="Delete" />
               </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">

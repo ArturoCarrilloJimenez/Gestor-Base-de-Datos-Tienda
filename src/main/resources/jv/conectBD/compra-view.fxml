@@ -110,8 +110,8 @@
                   <TableColumn fx:id="columnNombreProducto" maxWidth="242.39991760253906" minWidth="79.99995422363281" prefWidth="151.19996643066406" text="Producto" />
                   <TableColumn fx:id="columnCantidad" maxWidth="242.39991760253906" minWidth="45.60003662109375" prefWidth="68.79998779296875" text="Cantidad" />
                   <TableColumn fx:id="columnFechaHora" maxWidth="242.39991760253906" minWidth="45.60003662109375" prefWidth="139.99996948242188" text="Fecha Hora" />
-                  <TableColumn fx:id="columnEdit" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="Edit" />
-                  <TableColumn fx:id="columnDelete" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="Delete" />
+                  <TableColumn fx:id="columnEdit" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="Edit" />
+                  <TableColumn fx:id="columnDelete" maxWidth="42.0" minWidth="42.0" prefWidth="42.0" text="Delete" />
                </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">

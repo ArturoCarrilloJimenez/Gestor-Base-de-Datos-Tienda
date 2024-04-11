@@ -3,6 +3,7 @@ package jv.conectBD.ClassObject;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import jv.conectBD.controller.CompraController;
 
@@ -48,13 +49,21 @@ public class Compra {
         btnEdit.setStyle("-fx-cursor: hand;");
         btnDelete.setStyle("-fx-cursor: hand;");
 
-        // Establecer iconos de los botones
-        btnEdit.setGraphic(new ImageView());
-        btnDelete.setGraphic(new ImageView());
+        // Se crea una imagen para los botones
+        Image imageEdit = new Image(getClass().getResource("/jv/conectBD/image/edit.png").toExternalForm());
+        Image imageDelete = new Image(getClass().getResource("/jv/conectBD/image/delate.png").toExternalForm());
 
-        // Canvia el color del boto
-        btnEdit.setStyle("-fx-background-color: #00ff00;");
-        btnDelete.setStyle("-fx-background-color: #ff0000;");
+        ImageView editar = new ImageView(imageEdit);
+        ImageView eliminar = new ImageView(imageDelete);
+
+        // Canvia el tamaño de la imagen
+        editar.setFitHeight(20);
+        editar.setFitWidth(20);
+        eliminar.setFitHeight(20);
+        eliminar.setFitWidth(20);
+
+        btnEdit.setGraphic(editar);
+        btnDelete.setGraphic(eliminar);
 
         // Establecer eventos de los botones
         btnEdit.setOnAction(e -> {
