@@ -94,14 +94,23 @@ public class ClientesModel extends ConnectionModel {
             int id = Integer.parseInt(nombre);
             return getCliente("SELECT * FROM cliente WHERE id = " + id);
         } catch (NumberFormatException e) {
+            // Procesa el texto para que no tenga varios espacios en blanco
+            nombre = nombre.trim().replaceAll(" +", " ");
+            // Elimina los espacio en blanco al inicio y al final
+            nombre = nombre.trim();
+
             String[] nombres = nombre.split(" ");
 
-            if (nombres.length == 1) {
-                return getCliente("SELECT * FROM cliente WHERE nombre LIKE '%" + nombres[0] + "%'");
-            } else if (nombres.length == 2) {
-                return getCliente("SELECT * FROM cliente WHERE nombre LIKE '%" + nombres[0] + "%' AND apellido1 LIKE '%" + nombres[1] + "%'");
+            if (nombres.length < 1) {
+                return getCliente("");
             } else {
-                return getCliente("SELECT * FROM cliente WHERE nombre LIKE '%" + nombres[0] + "%' AND apellido1 LIKE '%" + nombres[1] + "%' AND apellido2 LIKE '%" + nombres[2] + "%'");
+                if (nombres.length == 1) {
+                    return getCliente("SELECT * FROM cliente WHERE nombre LIKE '%" + nombres[0] + "%'");
+                } else if (nombres.length == 2) {
+                    return getCliente("SELECT * FROM cliente WHERE nombre LIKE '%" + nombres[0] + "%' AND apellido1 LIKE '%" + nombres[1] + "%'");
+                } else {
+                    return getCliente("SELECT * FROM cliente WHERE nombre LIKE '%" + nombres[0] + "%' AND apellido1 LIKE '%" + nombres[1] + "%' AND apellido2 LIKE '%" + nombres[2] + "%'");
+                }
             }
         }
     }

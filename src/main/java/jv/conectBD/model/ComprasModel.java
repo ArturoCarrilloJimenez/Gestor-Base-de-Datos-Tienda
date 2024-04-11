@@ -117,29 +117,38 @@ public class ComprasModel extends ConnectionModel {
     public static ObservableList<Compra> buscarCliente(String cliente) {
         ObservableList<Compra> compras;
 
+        // Procesa el texto para que no tenga varios espacios en blanco
+        cliente = cliente.trim().replaceAll(" +", " ");
+        // Elimina los espacio en blanco al inicio y al final
+        cliente = cliente.trim();
+
         String[] nombre = cliente.split(" ");
 
-        if (nombre.length == 1) {
-            compras = getProductos("SELECT cliente.id, CONCAT_WS(\" \",cliente.nombre, cliente.apellido1, cliente.apellido2) AS \"nombreApellodosCliente\", producto.id, producto.nombre, compras.cantidad, compras.fecha_hora\n" +
-                "FROM producto INNER JOIN compras\n" +
-                "\tON producto.id = compras.id_producto\n" +
-                "    INNER JOIN cliente\n" +
-                "    ON cliente.id = compras.id_cliente\n" +
-                "WHERE cliente.nombre LIKE \"%" + nombre[0] + "%\";");
-        } else if (nombre.length == 2) {
-            compras = getProductos("SELECT cliente.id, CONCAT_WS(\" \",cliente.nombre, cliente.apellido1, cliente.apellido2) AS \"nombreApellodosCliente\", producto.id, producto.nombre, compras.cantidad, compras.fecha_hora\n" +
-                "FROM producto INNER JOIN compras\n" +
-                "\tON producto.id = compras.id_producto\n" +
-                "    INNER JOIN cliente\n" +
-                "    ON cliente.id = compras.id_cliente\n" +
-                "WHERE cliente.nombre LIKE \"%" + nombre[0] + "%\" AND cliente.apellido1 LIKE \"%" + nombre[1] + "%\";");
+        if (nombre.length < 1) {
+            compras = getProductos("");
         } else {
-            compras = getProductos("SELECT cliente.id, CONCAT_WS(\" \",cliente.nombre, cliente.apellido1, cliente.apellido2) AS \"nombreApellodosCliente\", producto.id, producto.nombre, compras.cantidad, compras.fecha_hora\n" +
-                "FROM producto INNER JOIN compras\n" +
-                "\tON producto.id = compras.id_producto\n" +
-                "    INNER JOIN cliente\n" +
-                "    ON cliente.id = compras.id_cliente\n" +
-                "WHERE cliente.nombre LIKE \"%" + nombre[0] + "%\" AND cliente.apellido1 LIKE \"%" + nombre[1] + "%\" AND cliente.apellido2 LIKE \"%" + nombre[2] + "%\";");
+            if (nombre.length == 1) {
+                compras = getProductos("SELECT cliente.id, CONCAT_WS(\" \",cliente.nombre, cliente.apellido1, cliente.apellido2) AS \"nombreApellodosCliente\", producto.id, producto.nombre, compras.cantidad, compras.fecha_hora\n" +
+                        "FROM producto INNER JOIN compras\n" +
+                        "\tON producto.id = compras.id_producto\n" +
+                        "    INNER JOIN cliente\n" +
+                        "    ON cliente.id = compras.id_cliente\n" +
+                        "WHERE cliente.nombre LIKE \"%" + nombre[0] + "%\";");
+            } else if (nombre.length == 2) {
+                compras = getProductos("SELECT cliente.id, CONCAT_WS(\" \",cliente.nombre, cliente.apellido1, cliente.apellido2) AS \"nombreApellodosCliente\", producto.id, producto.nombre, compras.cantidad, compras.fecha_hora\n" +
+                        "FROM producto INNER JOIN compras\n" +
+                        "\tON producto.id = compras.id_producto\n" +
+                        "    INNER JOIN cliente\n" +
+                        "    ON cliente.id = compras.id_cliente\n" +
+                        "WHERE cliente.nombre LIKE \"%" + nombre[0] + "%\" AND cliente.apellido1 LIKE \"%" + nombre[1] + "%\";");
+            } else {
+                compras = getProductos("SELECT cliente.id, CONCAT_WS(\" \",cliente.nombre, cliente.apellido1, cliente.apellido2) AS \"nombreApellodosCliente\", producto.id, producto.nombre, compras.cantidad, compras.fecha_hora\n" +
+                        "FROM producto INNER JOIN compras\n" +
+                        "\tON producto.id = compras.id_producto\n" +
+                        "    INNER JOIN cliente\n" +
+                        "    ON cliente.id = compras.id_cliente\n" +
+                        "WHERE cliente.nombre LIKE \"%" + nombre[0] + "%\" AND cliente.apellido1 LIKE \"%" + nombre[1] + "%\" AND cliente.apellido2 LIKE \"%" + nombre[2] + "%\";");
+            }
         }
 
         return compras;
