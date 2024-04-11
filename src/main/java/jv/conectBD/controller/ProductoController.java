@@ -253,6 +253,11 @@ public class ProductoController implements Initializable {
         });
     }
 
+    /**
+     * Metodo que se encarga de eliminar un producto de la base de datos
+     *
+     * @param producto producto a eliminar
+     */
     public static void deleteProducto(Producto producto) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Eliminar producto");

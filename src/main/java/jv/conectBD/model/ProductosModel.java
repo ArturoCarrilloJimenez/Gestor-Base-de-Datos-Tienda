@@ -110,6 +110,11 @@ public class ProductosModel extends ConnectionModel {
         return productosArray;
     }
 
+    /**
+     * Metodo que se encarga de editar un producto en la base de datos
+     *
+     * @return int 0 si no hay errores, 1 si hay errores
+     */
     public static int editProducto(int id, String nombre, String descripcion, double pvp) {
         int message = 0;
 
@@ -129,6 +134,11 @@ public class ProductosModel extends ConnectionModel {
         return message;
     }
 
+    /**
+     * Metodo que se encarga de eliminar un producto en la base de datos
+     *
+     * @return int 0 si no hay errores, 1 si hay errores
+     */
     public static int deleteProducto(int id) {
         int message = 0;
 

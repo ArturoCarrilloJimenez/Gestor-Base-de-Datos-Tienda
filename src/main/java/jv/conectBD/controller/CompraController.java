@@ -55,8 +55,8 @@ public class CompraController implements Initializable {
     /**
      * Método que inicializa la vista de Compras
      *
-     * @param url
-     * @param resourceBundle
+     * @param url url
+     * @param resourceBundle resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

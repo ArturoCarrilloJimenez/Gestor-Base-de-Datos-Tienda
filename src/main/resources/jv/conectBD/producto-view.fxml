@@ -35,11 +35,11 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label alignment="BOTTOM_LEFT" prefHeight="24.0" prefWidth="524.0" text="    Nombre" />
-                  <TextField fx:id="nombre" promptText="Nombre" />
+                  <TextField fx:id="nombre" promptText="Nombre" style="-fx-border-color: #BFBFBF; -fx-border-width: 0 0 1px 0; -fx-background-color: #F5F5F5;" />
                   <Label alignment="BOTTOM_LEFT" prefHeight="24.0" prefWidth="524.0" text="    Descripcion" />
-                  <TextField fx:id="descripcion" promptText="Descripcion" />
+                  <TextField fx:id="descripcion" promptText="Descripcion" style="-fx-border-color: #BFBFBF; -fx-border-width: 0 0 1px 0; -fx-background-color: #F5F5F5;" />
                   <Label alignment="BOTTOM_LEFT" prefHeight="24.0" prefWidth="524.0" text="    Precio unitario" />
-                  <TextField fx:id="pvp" promptText="PrecioUnitario, separa la parte entera de la decimal con punto" />
+                  <TextField fx:id="pvp" promptText="PrecioUnitario, separa la parte entera de la decimal con punto" style="-fx-border-color: #BFBFBF; -fx-border-width: 0 0 1px 0; -fx-background-color: #F5F5F5;" />
                   <HBox prefHeight="9.0" prefWidth="524.0" />
                   <Button mnemonicParsing="false" onAction="#addProducto" prefHeight="26.0" prefWidth="538.0" style="-fx-background-color: #BFBFBF;" text="Añadir producto">
                      <font>
@@ -82,8 +82,8 @@
                 <TableColumn fx:id="columnNombre" editable="false" maxWidth="148.79997873306274" minWidth="148.79997873306274" prefWidth="148.79997873306274" text="Nombre" />
                 <TableColumn fx:id="columnDescripcion" editable="false" maxWidth="180.79998779296875" minWidth="180.79998779296875" prefWidth="180.79998779296875" text="Descripcion" />
                   <TableColumn fx:id="columnPvp" editable="false" maxWidth="102.39990234375" minWidth="102.39990234375" prefWidth="102.39990234375" text="Precio unitario" />
-                  <TableColumn fx:id="columnEdit" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-                  <TableColumn fx:id="columnDelete" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                  <TableColumn fx:id="columnEdit" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Edit" />
+                  <TableColumn fx:id="columnDelete" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Delete" />
               </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
@@ -105,7 +105,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <TextField fx:id="InsertBuscar" prefHeight="26.0" prefWidth="274.0" promptText="Buscar por nombre, en caso de id usa numeros" />
+                  <TextField fx:id="InsertBuscar" prefHeight="26.0" prefWidth="274.0" promptText="Buscar por nombre, en caso de id usa numeros" style="-fx-border-color: #BFBFBF; -fx-border-width: 0 0 1px 0; -fx-background-color: #F5F5F5;" />
                </children>
             </HBox>
          </children>

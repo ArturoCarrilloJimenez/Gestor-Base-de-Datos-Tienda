@@ -51,6 +51,10 @@ public class Cliente {
         btnEdit.setGraphic(new ImageView());
         btnDelete.setGraphic(new ImageView());
 
+        // Canvia el color del boto
+        btnEdit.setStyle("-fx-background-color: #00ff00;");
+        btnDelete.setStyle("-fx-background-color: #ff0000;");
+
         // Se les asigna una clase a los botones
         btnEdit.setOnAction(e -> {
             ClienteController.editCliente(this);

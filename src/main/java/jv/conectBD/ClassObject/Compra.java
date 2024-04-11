@@ -52,6 +52,10 @@ public class Compra {
         btnEdit.setGraphic(new ImageView());
         btnDelete.setGraphic(new ImageView());
 
+        // Canvia el color del boto
+        btnEdit.setStyle("-fx-background-color: #00ff00;");
+        btnDelete.setStyle("-fx-background-color: #ff0000;");
+
         // Establecer eventos de los botones
         btnEdit.setOnAction(e -> {
             CompraController.editCompra(this);

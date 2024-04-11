@@ -55,8 +55,14 @@
                               <Image url="@image/alert.png" />
                            </image>
                         </ImageView>
-                        <ChoiceBox fx:id="clientes" prefHeight="26.0" prefWidth="258.0" GridPane.rowIndex="1" />
-                        <ChoiceBox fx:id="productos" prefHeight="26.0" prefWidth="252.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <ChoiceBox fx:id="clientes" prefHeight="26.0" prefWidth="258.0" style="-fx-background-color: E3E3E3;" GridPane.rowIndex="1">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ChoiceBox>
+                        <ChoiceBox fx:id="productos" prefHeight="26.0" prefWidth="252.0" style="-fx-background-color: E3E3E3;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ChoiceBox>
                      </children>
                   </GridPane>
                   <HBox prefHeight="9.0" prefWidth="524.0" />
@@ -64,7 +70,7 @@
                      <children>
                         <Label text="   Cantidad" />
                         <VBox prefHeight="27.0" prefWidth="28.0" />
-                        <TextField fx:id="cantidad" prefHeight="26.0" prefWidth="258.0" />
+                        <TextField fx:id="cantidad" prefHeight="26.0" prefWidth="258.0" promptText="Cantidad" style="-fx-background-color: #F5F5F5; -fx-border-width: 0 0 1px 0; -fx-border-color: #BFBFBF;" />
                         <ImageView fx:id="alertCantidad" fitHeight="22.0" fitWidth="21.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@image/alert.png" />
@@ -104,13 +110,13 @@
                   <TableColumn fx:id="columnNombreProducto" maxWidth="242.39991760253906" minWidth="79.99995422363281" prefWidth="151.19996643066406" text="Producto" />
                   <TableColumn fx:id="columnCantidad" maxWidth="242.39991760253906" minWidth="45.60003662109375" prefWidth="68.79998779296875" text="Cantidad" />
                   <TableColumn fx:id="columnFechaHora" maxWidth="242.39991760253906" minWidth="45.60003662109375" prefWidth="139.99996948242188" text="Fecha Hora" />
-                  <TableColumn fx:id="columnEdit" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
-                  <TableColumn fx:id="columnDelete" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                  <TableColumn fx:id="columnEdit" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="Edit" />
+                  <TableColumn fx:id="columnDelete" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="Delete" />
                </columns>
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Label prefHeight="27.0" prefWidth="228.0" text="    Compra" textFill="#333333">
+                  <Label prefHeight="27.0" prefWidth="228.0" text="    Compra" textFill="#2f2f2f">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -127,7 +133,7 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <TextField fx:id="InsertBuscar" prefHeight="26.0" prefWidth="272.0" promptText="Buscar por nombre de cliente" />
+                  <TextField fx:id="InsertBuscar" prefHeight="26.0" prefWidth="272.0" promptText="Buscar por nombre de cliente" style="-fx-background-color: #F5F5F5; -fx-border-width: 0 0 1px 0; -fx-border-color: #BFBFBF;" />
                </children>
             </HBox>
          </children>
