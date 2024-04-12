@@ -23,7 +23,7 @@ CREATE TABLE compras (
     cantidad INT UNSIGNED NOT NULL,
     fecha_hora DATETIME NOT NULL DEFAULT NOW(),
     
-    PRIMARY KEY (id_cliente,id_producto),
+    PRIMARY KEY (id_cliente,id_producto,fecha_hora),
     FOREIGN KEY (id_cliente) REFERENCES cliente (id),
     FOREIGN KEY (id_producto) REFERENCES producto (id)
 );
@@ -60,5 +60,3 @@ FROM producto INNER JOIN compras
 
 SELECT *
 FROM compras;
-
-TRUNCATE TABLE compras;

@@ -207,7 +207,7 @@ public class CompraController implements Initializable {
 
                     try {
                         int cantidadCompra = Integer.parseInt(cantidad.getText());
-                        int message = ComprasModel.editCompra(Integer.parseInt(cliente[0]), Integer.parseInt(producto[0]), cantidadCompra,compra.getIdCliente(), compra.getIdProducto());
+                        int message = ComprasModel.editCompra(Integer.parseInt(cliente[0]), Integer.parseInt(producto[0]), cantidadCompra,compra.getIdCliente(), compra.getIdProducto(), compra.getFechaHora());
 
                         if (message == 0) {
                             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
